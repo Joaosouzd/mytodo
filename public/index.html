@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTodo - Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-check-circle"></i> MyTodo</h1>
+                <p>Organize suas tarefas de forma simples e eficiente</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-users"></i> Usuários</h3>
+                    <button class="btn btn-primary" onclick="showCreateUserModal()">
+                        <i class="fas fa-plus"></i> Novo Usuário
+                    </button>
+                    <div id="usuarios-list" class="list-container"></div>
+                </div>
+
+                <div class="sidebar-section" id="listas-section" style="display: none;">
+                    <h3><i class="fas fa-list"></i> Listas</h3>
+                    <button class="btn btn-secondary" onclick="showCreateListModal()">
+                        <i class="fas fa-plus"></i> Nova Lista
+                    </button>
+                    <div id="listas-list" class="list-container"></div>
+                </div>
+            </aside>
+
+            <!-- Main Area -->
+            <section class="main-area">
+                <div id="welcome-screen" class="welcome-screen">
+                    <div class="welcome-content">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Bem-vindo ao MyTodo!</h2>
+                        <p>Selecione um usuário para começar a organizar suas tarefas</p>
+                    </div>
+                </div>
+
+                <div id="tarefas-area" class="tarefas-area" style="display: none;">
+                    <div class="tarefas-header">
+                        <h2 id="lista-titulo">Minhas Tarefas</h2>
+                        <button class="btn btn-primary" onclick="showCreateTaskModal()">
+                            <i class="fas fa-plus"></i> Nova Tarefa
+                        </button>
+                    </div>
+                    <div id="tarefas-list" class="tarefas-container"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal Criar Usuário -->
+    <div id="create-user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-plus"></i> Novo Usuário</h3>
+                <span class="close" onclick="closeModal('create-user-modal')">&times;</span>
+            </div>
+            <form id="create-user-form">
+                <div class="form-group">
+                    <label for="user-name">Nome:</label>
+                    <input type="text" id="user-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Email:</label>
+                    <input type="email" id="user-email" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('create-user-modal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Criar Usuário</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Criar Lista -->
+    <div id="create-list-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-list-plus"></i> Nova Lista</h3>
+                <span class="close" onclick="closeModal('create-list-modal')">&times;</span>
+            </div>
+            <form id="create-list-form">
+                <div class="form-group">
+                    <label for="list-name">Nome da Lista:</label>
+                    <input type="text" id="list-name" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('create-list-modal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Criar Lista</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Criar Tarefa -->
+    <div id="create-task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-tasks"></i> Nova Tarefa</h3>
+                <span class="close" onclick="closeModal('create-task-modal')">&times;</span>
+            </div>
+            <form id="create-task-form">
+                <div class="form-group">
+                    <label for="task-title">Título:</label>
+                    <input type="text" id="task-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Descrição:</label>
+                    <textarea id="task-description" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('create-task-modal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Criar Tarefa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
